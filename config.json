@@ -1,0 +1,38 @@
+{
+  "architecture": "convnextv2_base.fcmae_ft_in1k",
+  "num_classes": 10,
+  "parameter_count": 87703050,
+  "weights_file": "model.safetensors",
+  "weights_sha256": "670c41fc0e1641e588ad46abb86a8c815898c031ffbb08d77e9bb0fba1f8608a",
+  "labels_file": "labels.json",
+  "labels_sha256": "e5f70daa7e88197eef4b61af32f229bd6fc372522aa1f69388b670ca65892804",
+  "preprocessing": {
+    "color_mode": "RGB",
+    "input_size": [
+      224,
+      224
+    ],
+    "resize_mode": "stretch",
+    "interpolation": "bilinear",
+    "antialias": true,
+    "rescale_factor": 0.00392156862745098,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "exif_orientation": "not_applied"
+  },
+  "decision": {
+    "softmax_temperature": 1.0,
+    "confidence_threshold": 0.85,
+    "reject_class_id": 0,
+    "confidence_is_calibrated": false
+  },
+  "license": "CC-BY-NC-4.0"
+}

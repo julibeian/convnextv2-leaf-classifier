@@ -1,37 +1,31 @@
-# 模型服务部署指南
+# ConvNeXt V2 叶片图像分类模型
 
-面向 Linux 的通用部署资料：使用 Nginx 提供 HTTPS，通过 systemd 托管 FastAPI / ASGI 应用，并在启动前校验模型文件与标签映射。
+基于 ConvNeXt V2 Base 的水稻叶片整图分类模型，输出 10 类概率：8 个病害或症状标签、健康水稻及“其他”。
 
-```text
-HTTPS 客户端
-    │
-    ▼
-Nginx :443
-    │  回环网络
-    ▼
-ASGI 服务 127.0.0.1:8000
-    │
-    ▼
-模型文件 + 标签映射
-```
+[下载模型包](https://github.com/julibeian/convnextv2-leaf-classifier/releases/latest) · [模型卡](MODEL_CARD.md) · [输入契约](config.json) · [类别映射](labels.json)
 
-| 资料 | 内容 |
+| 项目 | 规格 |
 |---|---|
-| [部署步骤](docs/deployment.md) | 服务账户、目录、运行环境与启动顺序 |
-| [模型文件核验](docs/artifact-verification.md) | 哈希、标签顺序、运行进程与加载证据 |
-| [TLS 与常见故障](docs/troubleshooting.md) | 证书续期、反向代理、健康检查与排错 |
-| [配置模板](examples/) | systemd、Nginx、环境变量及续期钩子 |
-| [启动前校验脚本](scripts/verify_artifact.py) | 只使用 Python 标准库，不加载或反序列化模型 |
-| [发布范围](PUBLIC_SCOPE.md) | 文档范围、占位符约定与许可边界 |
+| 网络 | `convnextv2_base.fcmae_ft_in1k` |
+| 参数量 | 87,703,050 |
+| 输入 | RGB，224 × 224 |
+| 输出 | 10 类 logits，Softmax 概率 |
+| 权重格式 | Safetensors，float32，约 351 MB |
+| 使用范围 | 非商业研究与实验 |
 
-仓库不包含业务应用、模型文件或数据集。使用模板前，需要准备可导入的 ASGI 应用、可信的模型及标签文件，并替换所有占位符。模板中的 `app:app` 指向应用目录内的 `app.py`，该文件由部署者自行提供。
+模型包包含 `model.safetensors`、`config.json`、`labels.json`、离线推理代码、模型卡及许可文件。权重只包含推理张量。
 
-配置模板用于参考，尚不能代替目标环境中的语法检查、资源测试和端到端验收。应用的模型加载方式、预处理、并发能力和健康接口必须与部署配置相符。
+| 评测范围 | 样本量 | 准确率 | Macro F1 |
+|---|---:|---:|---:|
+| 同分布测试，10 类 | 1,020 | 98.24% | 0.9785 |
+| 独立采集来源，4 个支持类 | 3,734 | 8.86% | 0.1687 |
 
-校验脚本的本地检查：
+第二行 Macro F1 只在该来源的四个支持类上计算。两项评测的分布和类别范围不同。独立来源结果显示明显的分布迁移问题，同分布分数不能用于承诺田间识别效果。每类指标、拒识规则及局限见模型卡。
+
+离线调用：
 
 ```bash
-python -m unittest discover -s tests -v
+python inference.py path/to/image.jpg --model-dir path/to/model-bundle
 ```
 
-文档与模板采用 [MIT License](LICENSE)。第三方软件、模型与数据的许可分别适用，见 [第三方说明](THIRD_PARTY_NOTICES.md)。
+环境依赖见 [requirements.txt](requirements.txt)。模型权重采用 [CC BY-NC 4.0](WEIGHTS_LICENSE.md)；代码和文档采用 [MIT License](LICENSE)。
