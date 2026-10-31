@@ -48,11 +48,17 @@
 - 训练前建议先做近重复去重（壁纸/夜景多为大图，注意与验证集的泄漏）；
 - 两个包合计 3161 张，解压后约 318 MB。
 
-## 获取
+## 下载
 
-文件以 Git LFS 存储，克隆需要 `git lfs`：
+发布页（完整链接）：
 
-```bash
-git lfs install
-git clone https://github.com/julibeian/convnextv2-leaf-classifier.git
-```
+<https://github.com/julibeian/convnextv2-leaf-classifier/releases/tag/reference-sets-v1>
+
+| 文件 | 大小 | 直接下载 |
+|---|---|---|
+| `healthy_rice_1733.zip` | 133.5 MB | <https://github.com/julibeian/convnextv2-leaf-classifier/releases/download/reference-sets-v1/healthy_rice_1733.zip> |
+| `other_negatives_1428.zip` | 180.2 MB | <https://github.com/julibeian/convnextv2-leaf-classifier/releases/download/reference-sets-v1/other_negatives_1428.zip> |
+
+Release 资产名用 ASCII（`healthy_rice_1733.zip` / `other_negatives_1428.zip`），包内目录仍是中文（`健康水稻/`、`其他/`）。
+
+> 仓库内 `reference_sets/` 下另有一份 Git LFS 副本；克隆整个仓库需要 `git lfs install`。只想取数据的话，用上面的 Release 直链即可。
