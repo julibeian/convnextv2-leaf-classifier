@@ -56,9 +56,9 @@
 
 | 文件 | 大小 | 直接下载 |
 |---|---|---|
-| `healthy_rice_1733.zip` | 133.5 MB | <https://github.com/julibeian/convnextv2-leaf-classifier/releases/download/reference-sets-v1/healthy_rice_1733.zip> |
-| `other_negatives_1428.zip` | 180.2 MB | <https://github.com/julibeian/convnextv2-leaf-classifier/releases/download/reference-sets-v1/other_negatives_1428.zip> |
+| `healthy.rice.zip` | 133.5 MB | <https://github.com/julibeian/convnextv2-leaf-classifier/releases/download/reference-sets-v1/healthy.rice.zip> |
+| `other.zip` | 180.2 MB | <https://github.com/julibeian/convnextv2-leaf-classifier/releases/download/reference-sets-v1/other.zip> |
 
-Release 资产名用 ASCII（`healthy_rice_1733.zip` / `other_negatives_1428.zip`），包内目录仍是中文（`健康水稻/`、`其他/`）。
+Release 资产名为 `healthy.rice.zip` / `other.zip`，包内目录仍是中文（`健康水稻/`、`其他/`）。
 
 > 仓库内 `reference_sets/` 下另有一份 Git LFS 副本；克隆整个仓库需要 `git lfs install`。只想取数据的话，用上面的 Release 直链即可。
