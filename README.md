@@ -2,7 +2,7 @@
 
 基于 ConvNeXt V2 Base 的水稻叶片整图分类模型，输出 10 类概率：8 个病害或症状标签、健康水稻及“其他”。
 
-[下载模型包](https://github.com/julibeian/convnextv2-leaf-classifier/releases/latest) · [模型卡](MODEL_CARD.md) · [输入契约](config.json) · [类别映射](labels.json)
+[下载模型包](https://github.com/julibeian/convnextv2-leaf-classifier/releases/tag/v1.0.0) · [模型卡](MODEL_CARD.md) · [输入契约](config.json) · [类别映射](labels.json)
 
 | 项目 | 规格 |
 |---|---|
